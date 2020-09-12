@@ -1,0 +1,18 @@
+version: '3.4'
+volumes: 
+  web_data:
+    name: mongodata
+services:
+  meanappsecondway:
+    image: meanappsecondway-server
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+  db:
+    image: mongo
+    ports:
+      - 27017
+    volumes: 
+      - web_data:/data/db
